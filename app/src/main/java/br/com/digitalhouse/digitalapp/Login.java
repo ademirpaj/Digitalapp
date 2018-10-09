@@ -29,4 +29,11 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void registrar(View view) {
+
+        Intent intent = new Intent(this, RegistroActivity.class);
+        startActivity(intent);
+
+    }
 }
