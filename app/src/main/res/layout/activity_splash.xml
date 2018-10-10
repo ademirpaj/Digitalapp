@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:id="@+id/id_Digital"
         android:scaleType="matrix"
-        android:src="@drawable/digitalhouse"/>
+        android:src="@drawable/splash"/>
 
 
 </FrameLayout>
