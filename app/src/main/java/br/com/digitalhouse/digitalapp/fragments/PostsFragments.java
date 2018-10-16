@@ -3,6 +3,8 @@ package br.com.digitalhouse.digitalapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +24,6 @@ public class PostsFragments extends Fragment {
     private PostClicado listener;
 
 
-
     public PostsFragments() {
         // Required empty public constructor
     }
@@ -31,12 +32,12 @@ public class PostsFragments extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if (context instanceof  PostClicado){
+        if (context instanceof PostClicado) {
 
             listener = (PostClicado) context;
 
-        }else {
-            throw  new ClassCastException("A activity não é uma instancia de Post Clicado");
+        } else {
+            throw new ClassCastException("A activity não é uma instancia de Post Clicado");
         }
 
         PostClicado listener = (PostClicado) context;
@@ -62,11 +63,22 @@ public class PostsFragments extends Fragment {
 
         });
 
+        FloatingActionButton fab = view.findViewById(R.id.bt_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view,"novo post",Snackbar.LENGTH_INDEFINITE);
 
-return view;
-}
 
+
+            }
+        });
+
+
+        return view;
     }
 
-
 }
+
+
+

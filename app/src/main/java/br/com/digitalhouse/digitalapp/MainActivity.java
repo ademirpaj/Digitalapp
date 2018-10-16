@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.com.digitalhouse.digitalapp.Model.Post;
 import br.com.digitalhouse.digitalapp.fragments.EventosFragment;
 import br.com.digitalhouse.digitalapp.fragments.PeopleFragment;
 import br.com.digitalhouse.digitalapp.fragments.PostDetailsFragment;
@@ -35,9 +36,16 @@ public class MainActivity extends AppCompatActivity implements PostClicado {
 
         texto.setText(emailDigitado);
 
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exibiPosts();
+            }
+        });
+
     }
 
-    public void exibiPosts(View view) {
+    public void exibiPosts() {
         FragmentManager manager = getSupportFragmentManager();
          FragmentTransaction transaction = manager.beginTransaction();
          transaction.replace(R.id.container_id, new PostsFragments());
@@ -76,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements PostClicado {
         detailsFragment.setArguments(bundle);
         transaction.replace(R.id.container_id, this.detailsFragment);
         transaction.commit();
+
+    }
+
+    @Override
+    public void onButtonClick(Post post) {
 
     }
 }
