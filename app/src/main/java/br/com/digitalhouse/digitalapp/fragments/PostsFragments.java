@@ -6,14 +6,20 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.digitalhouse.digitalapp.Model.Post;
 import br.com.digitalhouse.digitalapp.R;
+import br.com.digitalhouse.digitalapp.adapter.RecyclerViewPostAdapter;
 import br.com.digitalhouse.digitalapp.interfaces.PostClicado;
 
 /**
@@ -48,34 +54,37 @@ public class PostsFragments extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_posts_fragments, container, false);
-        Button botaoDetalhe = view.findViewById(R.id.bt_details);
-        botaoDetalhe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Post post = new Post();
-                post.setTitulo("Tidulo post");
-                post.setAutor("Autor 1");
-                post.setImagem("www.google.com/imagex");
-                listener.onButtonClick(post);
-            }
-
-
-        });
-
-        FloatingActionButton fab = view.findViewById(R.id.bt_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view,"novo post",Snackbar.LENGTH_INDEFINITE);
-
-
-
-            }
-        });
-
+        setupRecyleView(view);
 
         return view;
+
+    }
+
+
+    private void setupRecyleView(View view) {
+        RecyclerView recyclerView = view.findViewById(R.id.recycleview_post_id);
+
+        RecyclerViewPostAdapter adapter = new RecyclerViewPostAdapter(creatPostList());
+
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+
+
+    }
+
+    private List<Post> creatPostList() {
+        List<Post> postList = new ArrayList<>();
+        Post post = new Post();
+        post.setTitulo("Nova Turma Iniciada");
+        post.setDescricao("em outubro iniciou nova turma");
+
+        postList.add(post);
+
+
+    return postList;
     }
 
 }
